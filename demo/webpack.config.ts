@@ -117,6 +117,7 @@ export default (env: { playground?: boolean; bench?: boolean } = {}, { mode }) =
     }),
     new webpack.ProvidePlugin({
       Buffer: ['buffer', 'Buffer'],
+      process: 'process/browser',
     }),
     new ForkTsCheckerWebpackPlugin({ logger: { infrastructure: 'silent', issues: 'console' } }),
     webpackIgnore(/js-yaml\/dumper\.js$/),

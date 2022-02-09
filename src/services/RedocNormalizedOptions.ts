@@ -53,6 +53,7 @@ export interface RedocRawOptions {
   ignoreNamedSchemas?: string[] | string;
   hideSchemaPattern?: boolean;
   generatedPayloadSamplesMaxDepth?: number;
+  codeSamplesLanguage?: string[] | string;
 }
 
 export function argValueToBoolean(val?: string | boolean, defaultValue?: boolean): boolean {
@@ -245,6 +246,7 @@ export class RedocNormalizedOptions {
   ignoreNamedSchemas: Set<string>;
   hideSchemaPattern: boolean;
   generatedPayloadSamplesMaxDepth: number;
+  codeSamplesLanguage: Set<string>;
 
   constructor(raw: RedocRawOptions, defaults: RedocRawOptions = {}) {
     raw = { ...defaults, ...raw };
@@ -310,6 +312,10 @@ export class RedocNormalizedOptions {
       ? raw.ignoreNamedSchemas
       : raw.ignoreNamedSchemas?.split(',').map(s => s.trim());
     this.ignoreNamedSchemas = new Set(ignoreNamedSchemas);
+    const codeSamplesLanguage = Array.isArray(raw.codeSamplesLanguage)
+      ? raw.codeSamplesLanguage
+      : raw.codeSamplesLanguage?.split(',').map(s => s.trim());
+    this.codeSamplesLanguage = new Set(codeSamplesLanguage);
     this.hideSchemaPattern = argValueToBoolean(raw.hideSchemaPattern);
     this.generatedPayloadSamplesMaxDepth =
       RedocNormalizedOptions.normalizeGeneratedPayloadSamplesMaxDepth(

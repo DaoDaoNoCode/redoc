@@ -6,6 +6,8 @@ import { SecurityRequirementModel } from './SecurityRequirement';
 
 import { OpenAPIExternalDocumentation, OpenAPIServer, OpenAPIXCodeSample } from '../../types';
 
+import * as OpenAPISnippet from 'openapi-snippet';
+
 import {
   extractExtensions,
   getOperationSummary,
@@ -189,8 +191,26 @@ export class OperationModel implements IMenuItem {
 
   @memoize
   get codeSamples() {
+    const schema = this.parser.spec;
+    schema.servers = this.servers;
+    const targets = Array.from(this.options.codeSamplesLanguage);
+    let generatedSamples = [];
+    if (!this.isCallback && !this.isEvent && !this.isWebhook && targets.length) {
+      const generatedCode = OpenAPISnippet.getEndpointSnippets(
+        schema,
+        this.operationSpec.pathName,
+        this.operationSpec.httpVerb,
+        targets,
+      );
+      generatedSamples = generatedCode.snippets.map(snippet => ({
+        lang: snippet.title,
+        source: decodeURI(snippet.content),
+      }));
+    }
     let samples: Array<OpenAPIXCodeSample | XPayloadSample> =
-      this.operationSpec['x-codeSamples'] || this.operationSpec['x-code-samples'] || [];
+      this.operationSpec['x-codeSamples'] ||
+      this.operationSpec['x-code-samples'] ||
+      generatedSamples;
 
     if (this.operationSpec['x-code-samples'] && !isCodeSamplesWarningPrinted) {
       isCodeSamplesWarningPrinted = true;
