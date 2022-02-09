@@ -1,3 +1,6 @@
+## Fork Usage
+**This fork is to generate code samples by setting `codeSamplesLanguage` in `options` Object. You can pass an array like `['node_request','shell_curl', 'shell_httpie', 'python_python3', 'php_curl', 'php_http1', 'php_http2']` to it, the full list of the language could be found [here](https://github.com/ErikWittern/openapi-snippet#targets). When the `x-codeSamples` and `x-code-samples` are not set, it will automatically generate the code samples based on the language you set. Thanks to [openapi-snippet](https://github.com/ErikWittern/openapi-snippet), [oas3-api-snippet-enricher](https://github.com/cdwv/oas3-api-snippet-enricher) and [@waynesun09](https://github.com/waynesun09). The standalone js bundle could be found [here]( https://cdn.jsdelivr.net/gh/DaoDaoNoCode/redoc@v1.0.0-codeSamples/bundles/redoc.standalone.js).**
+
 <div align="center">
   <img alt="Redoc logo" src="https://raw.githubusercontent.com/Redocly/redoc/master//docs/images/redoc.png" width="400px" />
 
