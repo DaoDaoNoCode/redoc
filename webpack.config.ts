@@ -115,6 +115,7 @@ export default (env: { standalone?: boolean; browser?: boolean } = {}) => ({
     new webpack.BannerPlugin(BANNER),
     new webpack.ProvidePlugin({
       Buffer: ['buffer', 'Buffer'],
+      process: 'process/browser',
     }),
     webpackIgnore(/js-yaml\/dumper\.js$/),
     env.standalone ? webpackIgnore(/^\.\/SearchWorker\.worker$/) : undefined,
