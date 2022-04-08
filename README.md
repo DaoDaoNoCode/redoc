@@ -1,6 +1,3 @@
-## Fork Usage
-**This fork is to generate code samples by setting `codeSamplesLanguage` in `options` Object. You can pass an array like `['node_request','shell_curl', 'shell_httpie', 'python_python3', 'php_curl', 'php_http1', 'php_http2']` to it, the full list of the language could be found [here](https://github.com/ErikWittern/openapi-snippet#targets). When the `x-codeSamples` and `x-code-samples` are not set, it will automatically generate the code samples based on the language you set. Thanks to [openapi-snippet](https://github.com/ErikWittern/openapi-snippet), [oas3-api-snippet-enricher](https://github.com/cdwv/oas3-api-snippet-enricher) and [@waynesun09](https://github.com/waynesun09). The standalone js bundle could be found [here]( https://cdn.jsdelivr.net/gh/DaoDaoNoCode/redoc@v1.0.0-codeSamples/bundles/redoc.standalone.js).**
-
 <div align="center">
   <img alt="Redoc logo" src="https://raw.githubusercontent.com/Redocly/redoc/master//docs/images/redoc.png" width="400px" />
 
@@ -26,14 +23,45 @@ By default Redoc offers a three-panel, responsive layout:
 
 ![Redoc demo](https://raw.githubusercontent.com/Redocly/redoc/master/demo/redoc-demo.png)
 
-## Live demo
+## Redoc with auto-generated code samples
 
-If you want to see how Redoc will render your OpenAPI definition,
-you can try it out online at https://redocly.github.io/redoc/.
+Redoc community edition don't support auto-generated code samples. Check redocly
+[doc](https://redocly.com/docs/api-reference-docs/guides/generate-code-samples/) for
+more details.
 
-A version of the Swagger Petstore API is displayed by default.
-To test it with your own OpenAPI definition,
-enter the URL for your definition and select **TRY IT**.
+This project support auto-generated code samples with:
+
+- [openapi-snippet](https://github.com/ErikWittern/openapi-snippet)
+- [oas3-api-snippet-enricher](https://github.com/cdwv/oas3-api-snippet-enricher)
+
+It helps user avoid:
+
+- Manually add `x-code-samples` into the OpenAPI schemas
+- Update the OpenAPI schemas file using [openapi-snippet CLI](https://github.com/ErikWittern/openapi-snippet/issues/40).
+
+It's all handled within Redoc frontend.
+
+The project add new parameter `codeSamplesLanguage` in `options` Object. It supports
+array or language string seperated with comma, e.g. you can pass an array like:
+
+    ['node_request','shell_curl', 'shell_httpie', 'python_python3', 'php_curl', 'php_http1', 'php_http2']
+
+or a string list with:
+
+    shell_curl,python_python3,go_native,java_unirest,node_native,javascript_xhr
+
+The full list of the language could be found [here](https://github.com/ErikWittern/openapi-snippet#targets).
+
+When the `x-codeSamples` and `x-code-samples` are not set, it will
+automatically generate the code samples based on the language you set.
+
+The standalone js bundle could be found [here]( https://cdn.jsdelivr.net/gh/DaoDaoNoCode/redoc@v1.0.0-codeSamples/bundles/redoc.standalone.js).
+
+### Usage Example
+
+Check React [demo](redoc/tree/master/demo/playground) under the updated playgroud dir.
+
+Check plain HTML with FastAPI customized Redoc usage in project [notify-service](https://github.com/RedHatQE/notify-service/pull/39).
 
 ## Redoc vs. Reference vs. Portals
 
