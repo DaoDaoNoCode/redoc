@@ -55,7 +55,7 @@ The full list of the language could be found [here](https://github.com/ErikWitte
 When the `x-codeSamples` and `x-code-samples` are not set, it will
 automatically generate the code samples based on the language you set.
 
-The standalone js bundle could be found [here]( https://cdn.jsdelivr.net/gh/DaoDaoNoCode/redoc@v1.0.0-codeSamples/bundles/redoc.standalone.js).
+The standalone js bundle could be found [here]( https://cdn.jsdelivr.net/gh/DaoDaoNoCode/redoc@v1.0.1-codeSamples/bundles/redoc.standalone.js).
 
 ### Usage Example
 
